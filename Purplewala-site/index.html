@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Purplewala — Artisan Ice Cream</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --purple: #3B0764;
+    --purple-deep: #2A0548;
+    --crimson: #BE123C;
+    --yellow: #FBBF24;
+    --white: #FDF4FF;
+    --lavender: #A78BFA;
+    --ink: #1A0530;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: "Poppins", sans-serif;
+    background:
+      radial-gradient(1000px 800px at 82% 6%, rgba(167, 139, 250, 0.34), transparent 58%),
+      radial-gradient(900px 800px at 8% 48%, rgba(190, 18, 60, 0.20), transparent 55%),
+      radial-gradient(950px 800px at 90% 92%, rgba(167, 139, 250, 0.26), transparent 58%),
+      linear-gradient(160deg, #4C1D95 0%, #3B0764 45%, #4C1D95 74%, #5B21B6 100%);
+    background-attachment: fixed;
+    color: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: "Playfair Display", serif;
+    line-height: 1.1;
+    font-weight: 700;
+  }
+
+  .wrap {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- NAVBAR ---------- */
+  .nav {
+    position: fixed;
+    top: 12px;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: stretch;
+    gap: 12px;
+    padding: 14px 24px;
+    max-width: 1240px;
+    margin: 0 auto;
+    transform: translateY(-130%);
+    animation: navDrop 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+  }
+
+  /* each direct group is a bento tile */
+  .nav-tile {
+    display: flex;
+    align-items: center;
+    background: rgba(42, 5, 72, 0.55);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border: 1px solid rgba(167, 139, 250, 0.22);
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .nav-tile.logo-tile { padding: 8px 18px 8px 10px; }
+  .nav-tile.links-tile { padding: 6px; justify-content: center; }
+  .nav-tile.cta-tile { padding: 6px; gap: 6px; }
+
+  .nav-order {
+    color: var(--white);
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.92rem;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+    padding: 9px 22px;
+    border-radius: 13px;
+    background: linear-gradient(120deg, var(--crimson), #7C1D6F);
+    border: 1px solid rgba(251, 191, 36, 0.4);
+    transition: box-shadow 0.25s ease, transform 0.2s ease;
+  }
+
+  .nav-order:hover {
+    box-shadow: 0 6px 20px rgba(190, 18, 60, 0.5), 0 0 16px rgba(251, 191, 36, 0.3);
+    transform: translateY(-1px);
+  }
+
+  .nav-tile:hover { border-color: rgba(167, 139, 250, 0.45); }
+
+  @keyframes navDrop {
+    to { transform: translateY(0); }
+  }
+
+  .logo {
+    font-family: "Playfair Display", serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: 0.3px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .logo .dot {
+    font-size: 1.3rem;
+    filter: drop-shadow(0 4px 10px rgba(167, 139, 250, 0.5));
+  }
+
+  /* ---------- BRAND BADGE (logo) ---------- */
+  .brand-badge {
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 40%, #FDF4FF, #C4B5FD 72%, #A78BFA);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35), inset 0 0 0 2px rgba(255, 255, 255, 0.5);
+  }
+
+  .brand-badge img {
+    width: 92%;
+    height: 92%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .brand-badge--sm {
+    width: 48px;
+    height: 48px;
+  }
+
+  .brand-badge--hero {
+    width: 168px;
+    height: 168px;
+    box-shadow: 0 22px 50px rgba(167, 139, 250, 0.45), inset 0 0 0 3px rgba(255, 255, 255, 0.55);
+  }
+
+  .brand-badge--ft {
+    width: 52px;
+    height: 52px;
+  }
+
+  .logo b {
+    color: var(--lavender);
+    font-weight: 800;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 400;
+    letter-spacing: 0.4px;
+    position: relative;
+    opacity: 0.9;
+    padding: 9px 18px;
+    border-radius: 13px;
+    border: 1px solid transparent;
+    transition: background 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
+  }
+
+  .nav-links a:hover {
+    opacity: 1;
+    background: rgba(167, 139, 250, 0.16);
+    border-color: rgba(167, 139, 250, 0.3);
+  }
+
+  .nav-links a.order-link {
+    background: linear-gradient(120deg, var(--crimson), #7C1D6F);
+    border-color: rgba(251, 191, 36, 0.4);
+    font-weight: 500;
+  }
+
+  .nav-links a.order-link:hover {
+    background: linear-gradient(120deg, #D11447, #8B2280);
+    box-shadow: 0 6px 18px rgba(190, 18, 60, 0.45);
+  }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 28px 70px;
+    overflow: hidden;
+    background:
+      radial-gradient(820px 620px at 74% 36%, rgba(167, 139, 250, 0.42), transparent 60%),
+      radial-gradient(620px 520px at 12% 88%, rgba(190, 18, 60, 0.24), transparent 55%),
+      linear-gradient(135deg, #4C1D95 0%, #3B0764 50%, #5B21B6 100%);
+  }
+
+  .hero-particles {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 36px;
+    align-items: center;
+  }
+
+  .hero-copy { text-align: left; }
+
+  .hero-logo {
+    width: 92px;
+    height: 92px;
+    margin-bottom: 18px;
+    opacity: 0;
+    animation: rise 0.9s ease 0.2s forwards;
+  }
+
+  .hero-art {
+    position: relative;
+    height: 500px;
+  }
+
+  .shake-main {
+    position: absolute;
+    right: 0;
+    top: 6%;
+    bottom: 6%;
+    width: 78%;
+    border-radius: 32px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 34px 80px rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    animation: fadeIn 1s ease 0.5s forwards, float 5.5s ease-in-out 1.6s infinite;
+  }
+
+  .shake-main img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .shake-float {
+    position: absolute;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid rgba(255, 255, 255, 0.55);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+  }
+
+  .shake-float img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .shake-float.one {
+    width: 158px; height: 158px; left: -8px; top: 3%;
+    animation: fadeIn 1s ease 0.8s forwards, float 4.4s ease-in-out 1.9s infinite;
+  }
+
+  .shake-float.two {
+    width: 122px; height: 122px; left: 7%; bottom: 2%;
+    animation: fadeIn 1s ease 1s forwards, float 5s ease-in-out 2.3s infinite;
+  }
+
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-22px); }
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero .eyebrow {
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--lavender);
+    font-weight: 500;
+    margin-bottom: 22px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.4s forwards;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.6rem, 5.4vw, 4.8rem);
+    font-weight: 800;
+    max-width: 14ch;
+    margin: 0;
+    background: linear-gradient(100deg, #FFFFFF 38%, #FDE68A 74%, var(--yellow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.6s forwards;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 600;
+  }
+
+  .hero p.sub {
+    max-width: 46ch;
+    margin: 22px 0 32px;
+    font-size: clamp(1rem, 1.6vw, 1.18rem);
+    font-weight: 300;
+    color: rgba(253, 244, 255, 0.82);
+    opacity: 0;
+    animation: fadeUp 1s ease 0.8s forwards;
+  }
+
+  .cta-row {
+    opacity: 0;
+    animation: fadeUp 1s ease 1s forwards;
+    display: flex;
+    gap: 16px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(34px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .btn {
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+    padding: 16px 38px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .btn-primary {
+    color: var(--white);
+    background: linear-gradient(120deg, var(--crimson), #7C1D6F);
+    box-shadow: 0 10px 30px rgba(190, 18, 60, 0.35);
+    border: 1px solid rgba(251, 191, 36, 0.35);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    animation: pulseGlow 1.4s ease-in-out infinite;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 10px 30px rgba(190, 18, 60, 0.4), 0 0 0 0 rgba(251, 191, 36, 0.5); }
+    50% { box-shadow: 0 14px 44px rgba(190, 18, 60, 0.6), 0 0 32px 8px rgba(251, 191, 36, 0.5); }
+  }
+
+  .btn-ghost {
+    color: var(--white);
+    background: rgba(167, 139, 250, 0.1);
+    border: 1px solid rgba(167, 139, 250, 0.4);
+  }
+
+  .btn-ghost:hover {
+    background: rgba(167, 139, 250, 0.2);
+    transform: translateY(-3px);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    z-index: 1;
+    transform: translateX(-50%);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(253, 244, 255, 0.5);
+    opacity: 0;
+    animation: fadeUp 1s ease 1.3s forwards;
+  }
+
+  .scroll-hint span {
+    display: block;
+    margin: 8px auto 0;
+    width: 1px;
+    height: 36px;
+    background: linear-gradient(var(--lavender), transparent);
+    animation: hintPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes hintPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(0.7); }
+    50% { opacity: 1; transform: scaleY(1); }
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section.block {
+    padding: 110px 0;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  section.block.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .section-head {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .section-head .kicker {
+    font-size: 0.8rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, var(--crimson), var(--yellow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+
+  .section-head h2 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+  }
+
+  .section-head h2 em {
+    color: var(--lavender);
+    font-style: italic;
+  }
+
+  /* ---------- FLAVORS ---------- */
+  .flavor-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  .card {
+    background: linear-gradient(180deg, rgba(59, 7, 100, 0.55), rgba(42, 5, 72, 0.35));
+    border: 1px solid rgba(167, 139, 250, 0.18);
+    border-radius: 26px;
+    padding: 40px 32px 34px;
+    text-align: center;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 26px 60px rgba(167, 139, 250, 0.28);
+    border-color: rgba(167, 139, 250, 0.5);
+  }
+
+  .scoop {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto 26px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.4rem;
+    box-shadow: inset 0 -14px 30px rgba(0, 0, 0, 0.25), 0 14px 34px rgba(0, 0, 0, 0.3);
+    border: 3px solid rgba(167, 139, 250, 0.3);
+    transition: transform 0.5s ease;
+  }
+
+  .scoop img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .card:hover .scoop {
+    transform: rotate(-6deg) scale(1.05);
+  }
+
+  .scoop.berry { background: radial-gradient(circle at 35% 30%, #C084FC, #6D28D9 70%, #3B0764); }
+  .scoop.rose  { background: radial-gradient(circle at 35% 30%, #FB7185, #BE123C 70%, #831843); }
+  .scoop.vanilla { background: radial-gradient(circle at 35% 30%, #FFF8E7, #EAD9C0 65%, #C9B79C); }
+
+  .card h3 {
+    font-size: 1.55rem;
+    margin-bottom: 8px;
+  }
+
+  .card .desc {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: rgba(253, 244, 255, 0.65);
+    min-height: 44px;
+    margin-bottom: 18px;
+  }
+
+  .price {
+    font-family: "Playfair Display", serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--lavender);
+    margin-bottom: 22px;
+  }
+
+  .price small {
+    font-family: "Poppins", sans-serif;
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: rgba(253, 244, 255, 0.5);
+    letter-spacing: 1px;
+  }
+
+  .add-btn {
+    font-family: "Poppins", sans-serif;
+    width: 100%;
+    padding: 13px;
+    border-radius: 50px;
+    border: 1px solid rgba(167, 139, 250, 0.45);
+    background: transparent;
+    color: var(--white);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  }
+
+  .add-btn:hover {
+    background: var(--lavender);
+    color: var(--ink);
+    transform: translateY(-2px);
+  }
+
+  .add-btn.added {
+    background: var(--crimson);
+    border-color: var(--crimson);
+    color: var(--white);
+  }
+
+  /* ---------- WHY US ---------- */
+  .why {
+    background:
+      linear-gradient(180deg, rgba(167, 139, 250, 0.12), transparent);
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+  }
+
+  .why-col {
+    text-align: center;
+    padding: 40px 28px;
+  }
+
+  .why-icon {
+    width: 84px;
+    height: 84px;
+    margin: 0 auto 22px;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    background: linear-gradient(135deg, rgba(167, 139, 250, 0.22), rgba(251, 191, 36, 0.2), rgba(190, 18, 60, 0.18));
+    border: 1px solid rgba(251, 191, 36, 0.3);
+    transition: transform 0.4s ease;
+  }
+
+  .why-col:hover .why-icon {
+    transform: translateY(-6px) rotate(-4deg);
+  }
+
+  .why-col h3 {
+    font-size: 1.35rem;
+    margin-bottom: 10px;
+  }
+
+  .why-col p {
+    font-size: 0.92rem;
+    font-weight: 300;
+    color: rgba(253, 244, 255, 0.66);
+    max-width: 30ch;
+    margin: 0 auto;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    border-top: 1px solid rgba(167, 139, 250, 0.16);
+    padding: 64px 0 34px;
+    margin-top: 40px;
+    background: rgba(76, 29, 149, 0.32);
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 48px;
+  }
+
+  .footer-brand .logo {
+    margin-bottom: 16px;
+  }
+
+  .footer-brand p {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: rgba(253, 244, 255, 0.6);
+    max-width: 34ch;
+  }
+
+  .footer-col h4 {
+    font-family: "Poppins", sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--lavender);
+    margin-bottom: 18px;
+    font-weight: 600;
+  }
+
+  .footer-col ul {
+    list-style: none;
+  }
+
+  .footer-col li {
+    margin-bottom: 11px;
+  }
+
+  .footer-col a {
+    color: rgba(253, 244, 255, 0.72);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 300;
+    transition: color 0.25s ease;
+  }
+
+  .footer-col a:hover {
+    color: var(--lavender);
+  }
+
+  .socials {
+    display: flex;
+    gap: 14px;
+    margin-top: 6px;
+  }
+
+  .socials a {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    background: rgba(167, 139, 250, 0.12);
+    border: 1px solid rgba(167, 139, 250, 0.28);
+    text-decoration: none;
+    transition: transform 0.25s ease, background 0.25s ease;
+  }
+
+  .socials a:hover {
+    transform: translateY(-4px);
+    background: var(--crimson);
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(167, 139, 250, 0.12);
+    padding-top: 24px;
+    text-align: center;
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: rgba(253, 244, 255, 0.5);
+  }
+
+  .footer-bottom b {
+    color: var(--lavender);
+    font-weight: 500;
+  }
+
+  /* ---------- MENU ---------- */
+  .menu-wrap {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 50px;
+    align-items: center;
+  }
+
+  .menu-photo {
+    position: relative;
+    border-radius: 28px;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    border: 1px solid rgba(167, 139, 250, 0.25);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+  }
+
+  .menu-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s ease;
+  }
+
+  .menu-photo:hover img {
+    transform: scale(1.06);
+  }
+
+  .menu-photo .badge {
+    position: absolute;
+    bottom: 18px;
+    left: 18px;
+    background: linear-gradient(120deg, var(--crimson), #7C1D6F);
+    color: var(--white);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    padding: 9px 18px;
+    border-radius: 50px;
+    border: 1px solid rgba(251, 191, 36, 0.5);
+  }
+
+  .menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .menu-cat h3 {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .menu-cat h3 .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(167, 139, 250, 0.5), transparent);
+  }
+
+  .menu-item {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .menu-item .name {
+    font-weight: 500;
+    color: var(--white);
+    white-space: nowrap;
+  }
+
+  .menu-item .desc-sm {
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: rgba(253, 244, 255, 0.5);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .menu-item .dots {
+    flex: 1;
+    border-bottom: 1px dotted rgba(167, 139, 250, 0.4);
+    transform: translateY(-4px);
+    min-width: 18px;
+  }
+
+  .menu-item .amt {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    color: var(--yellow);
+    white-space: nowrap;
+  }
+
+  .menu-item .amt small {
+    font-family: "Poppins", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: rgba(253, 244, 255, 0.45);
+  }
+
+  /* ---------- GALLERY ---------- */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 200px;
+    grid-auto-flow: dense;
+    gap: 16px;
+  }
+
+  .gallery-grid figure {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 1px solid rgba(167, 139, 250, 0.18);
+    margin: 0;
+  }
+
+  .gallery-grid figure.tall { grid-row: span 2; }
+  .gallery-grid figure.wide { grid-column: span 2; }
+
+  .gallery-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .gallery-grid figure::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 55%, rgba(26, 5, 48, 0.7));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .gallery-grid figure:hover img { transform: scale(1.1); }
+  .gallery-grid figure:hover::after { opacity: 1; }
+
+  .gallery-grid figcaption {
+    position: absolute;
+    bottom: 14px;
+    left: 16px;
+    z-index: 2;
+    color: var(--white);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .gallery-grid figure:hover figcaption {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---------- TOAST ---------- */
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(120px);
+    background: var(--crimson);
+    color: var(--white);
+    padding: 14px 26px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 14px 40px rgba(190, 18, 60, 0.5);
+    z-index: 200;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+  }
+
+  .toast.show {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px) {
+    .flavor-grid,
+    .why-grid {
+      grid-template-columns: 1fr;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      grid-template-columns: 1fr 1fr;
+    }
+    .footer-brand {
+      grid-column: 1 / -1;
+    }
+    .menu-wrap {
+      grid-template-columns: 1fr;
+      gap: 36px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .menu-photo { aspect-ratio: 16 / 10; }
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 160px;
+    }
+    .hero-inner {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      text-align: center;
+    }
+    .hero-copy { text-align: center; }
+    .hero-logo { margin-left: auto; margin-right: auto; }
+    .hero h1 { margin: 0 auto; }
+    .hero p.sub { margin-left: auto; margin-right: auto; }
+    .cta-row { justify-content: center; }
+    .hero-art {
+      order: -1;
+      height: 320px;
+      max-width: 440px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .shake-float.one { width: 120px; height: 120px; }
+    .shake-float.two { width: 96px; height: 96px; }
+  }
+
+  @media (max-width: 620px) {
+    .nav { padding: 10px 14px; gap: 8px; grid-template-columns: 1fr auto; }
+    .links-tile { display: contents; }
+    .nav-links {
+      position: fixed;
+      top: 78px;
+      right: 14px;
+      left: 14px;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 8px;
+      padding: 14px;
+      background: rgba(42, 5, 72, 0.94);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(167, 139, 250, 0.22);
+      border-radius: 20px;
+      transform: translateY(-12px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 90;
+    }
+    .nav-links.open {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .nav-links a { text-align: center; padding: 13px; }
+    .nav-toggle { display: block; }
+    .footer-top { grid-template-columns: 1fr; }
+    section.block { padding: 80px 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+    .hero-logo, .shake-main, .shake-float, .hero .eyebrow, .hero h1, .hero p.sub, .cta-row, .scroll-hint { opacity: 1; }
+    section.block { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR (bento) ===== -->
+  <nav class="nav">
+    <div class="nav-tile logo-tile">
+      <a href="#" class="logo"><span class="brand-badge brand-badge--sm"><img src="assets/purplewala-logo.png" alt="Purplewala logo"></span>Purple<b>wala</b></a>
+    </div>
+    <div class="nav-tile links-tile">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#flavors">Flavors</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#why">About</a></li>
+      </ul>
+    </div>
+    <div class="nav-tile cta-tile">
+      <a href="#order" class="nav-order">Order Now</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <header class="hero">
+    <canvas id="particles" class="hero-particles"></canvas>
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <span class="brand-badge brand-badge--hero hero-logo"><img src="assets/purplewala-logo.png" alt="Purplewala"></span>
+        <p class="eyebrow">Artisan · Small Batch · Made With Love</p>
+        <h1>Life is Sweet. <em>Lick It Up.</em></h1>
+        <p class="sub">Hand-churned scoops, dreamy milkshakes and falooda floats — made in tiny batches with real fruit and a whole lot of obsession.</p>
+        <div class="cta-row">
+          <a href="#order" class="btn btn-primary">Order Now</a>
+          <a href="#flavors" class="btn btn-ghost">Explore Flavors</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="shake-main"><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=700&q=80" alt="Signature milkshake" onerror="this.closest('.shake-main').style.background='linear-gradient(135deg,#BE123C,#7C1D6F)'"></div>
+        <div class="shake-float one"><img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=400&q=80" alt="Berry shake" onerror="this.closest('.shake-float').style.background='linear-gradient(135deg,#A78BFA,#BE123C)'"></div>
+        <div class="shake-float two"><img src="https://images.unsplash.com/photo-1553787499-6f9133860278?w=400&q=80" alt="Chocolate shake" onerror="this.closest('.shake-float').style.background='linear-gradient(135deg,#3B0764,#FBBF24)'"></div>
+      </div>
+    </div>
+    <div class="scroll-hint">Scroll<span></span></div>
+  </header>
+
+  <!-- ===== FEATURED FLAVORS ===== -->
+  <section class="block" id="flavors">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Featured Scoops</p>
+        <h2>Flavors Worth <em>Falling</em> For</h2>
+      </div>
+      <div class="flavor-grid">
+
+        <article class="card">
+          <div class="scoop berry"><img src="https://images.unsplash.com/photo-1580915411954-282cb1b0d780?w=400&q=75" alt="Midnight Berry" loading="lazy" onerror="this.remove()"></div>
+          <h3>Midnight Berry</h3>
+          <p class="desc">Blackberry &amp; blueberry swirl with a velvet cream base.</p>
+          <div class="price">PKR 350 <small>/ scoop</small></div>
+          <button class="add-btn">Add to Cart</button>
+        </article>
+
+        <article class="card">
+          <div class="scoop rose"><img src="https://images.unsplash.com/photo-1505394033641-40c6ad1178d7?w=400&q=75" alt="Velvet Rose" loading="lazy" onerror="this.remove()"></div>
+          <h3>Velvet Rose</h3>
+          <p class="desc">Persian rose, raspberry ribbons, and crushed pistachio.</p>
+          <div class="price">PKR 350 <small>/ scoop</small></div>
+          <button class="add-btn">Add to Cart</button>
+        </article>
+
+        <article class="card">
+          <div class="scoop vanilla"><img src="https://images.unsplash.com/photo-1560008581-09826d1de69e?w=400&q=75" alt="Vanilla Dream" loading="lazy" onerror="this.remove()"></div>
+          <h3>Vanilla Dream</h3>
+          <p class="desc">Madagascar bourbon vanilla, slow-churned to silk.</p>
+          <div class="price">PKR 350 <small>/ scoop</small></div>
+          <button class="add-btn">Add to Cart</button>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MENU ===== -->
+  <section class="block" id="menu">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">The Full Scoop</p>
+        <h2>Our <em>Menu</em></h2>
+      </div>
+      <div class="menu-wrap">
+        <div class="menu-photo">
+          <img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=700&q=80" alt="Signature waffle cone" loading="lazy" onerror="this.closest('.menu-photo').style.background='linear-gradient(135deg,#3B0764,#BE123C)'">
+          <span class="badge">★ Today's Favourite</span>
+        </div>
+        <div class="menu-list">
+
+          <div class="menu-cat">
+            <h3>Signature Scoops <span class="line"></span></h3>
+            <div class="menu-item"><span class="name">Midnight Berry</span><span class="dots"></span><span class="amt">PKR 350</span></div>
+            <div class="menu-item"><span class="name">Velvet Rose</span><span class="dots"></span><span class="amt">PKR 350</span></div>
+            <div class="menu-item"><span class="name">Vanilla Dream</span><span class="dots"></span><span class="amt">PKR 350</span></div>
+            <div class="menu-item"><span class="name">Belgian Dark Choco</span><span class="dots"></span><span class="amt">PKR 400</span></div>
+            <div class="menu-item"><span class="name">Salted Caramel Crunch</span><span class="dots"></span><span class="amt">PKR 400</span></div>
+          </div>
+
+          <div class="menu-cat">
+            <h3>Sundaes &amp; Bowls <span class="line"></span></h3>
+            <div class="menu-item"><span class="name">Brownie Fudge Storm</span><span class="dots"></span><span class="amt">PKR 650</span></div>
+            <div class="menu-item"><span class="name">Berry Lavender Parfait</span><span class="dots"></span><span class="amt">PKR 600</span></div>
+            <div class="menu-item"><span class="name">Triple Scoop Tower</span><span class="dots"></span><span class="amt">PKR 850</span></div>
+          </div>
+
+          <div class="menu-cat">
+            <h3>Shakes &amp; Floats <span class="line"></span></h3>
+            <div class="menu-item"><span class="name">Purple Velvet Shake</span><span class="dots"></span><span class="amt">PKR 500</span></div>
+            <div class="menu-item"><span class="name">Rose Falooda Float</span><span class="dots"></span><span class="amt">PKR 550</span></div>
+            <div class="menu-item"><span class="name">Classic Vanilla Malt</span><span class="dots"></span><span class="amt">PKR 450</span></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY US ===== -->
+  <section class="block why" id="why">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">The Scoops Promise</p>
+        <h2>Why You'll <em>Love</em> Us</h2>
+      </div>
+      <div class="why-grid">
+
+        <div class="why-col">
+          <div class="why-icon">🍓</div>
+          <h3>Fresh Daily</h3>
+          <p>Churned every morning. Nothing sits — every scoop is made the day you taste it.</p>
+        </div>
+
+        <div class="why-col">
+          <div class="why-icon">✨</div>
+          <h3>Premium Ingredients</h3>
+          <p>Single-origin vanilla, real fruit, and cream from grass-fed local dairies.</p>
+        </div>
+
+        <div class="why-col">
+          <div class="why-icon">🚲</div>
+          <h3>Free Delivery</h3>
+          <p>Chilled to perfection and delivered to your door — on the house, every time.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section class="block" id="gallery">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Straight From The Parlour</p>
+        <h2>The <em>Gallery</em></h2>
+      </div>
+      <div class="gallery-grid">
+        <figure class="tall">
+          <img src="https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=600&q=80" alt="Colourful cones" loading="lazy" onerror="this.closest('figure').style.background='linear-gradient(135deg,#3B0764,#A78BFA)'">
+          <figcaption>Cones for days</figcaption>
+        </figure>
+        <figure class="wide">
+          <img src="https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?w=800&q=80" alt="Gelato counter" loading="lazy" onerror="this.closest('figure').style.background='linear-gradient(135deg,#BE123C,#7C1D6F)'">
+          <figcaption>Fresh from the counter</figcaption>
+        </figure>
+        <figure>
+          <img src="https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=500&q=80" alt="Mango scoops" loading="lazy" onerror="this.closest('figure').style.background='linear-gradient(135deg,#FBBF24,#BE123C)'">
+          <figcaption>Mango magic</figcaption>
+        </figure>
+        <figure>
+          <img src="https://images.unsplash.com/photo-1576506295286-5cda18df43e7?w=500&q=80" alt="Chocolate cone" loading="lazy" onerror="this.closest('figure').style.background='linear-gradient(135deg,#3B0764,#BE123C)'">
+          <figcaption>Double choc</figcaption>
+        </figure>
+        <figure class="wide">
+          <img src="https://images.unsplash.com/photo-1633933358116-a27b902fad35?w=800&q=80" alt="Chocolate cones" loading="lazy" onerror="this.closest('figure').style.background='linear-gradient(135deg,#2A0548,#A78BFA)'">
+          <figcaption>Date night dessert</figcaption>
+        </figure>
+        <figure>
+          <img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=500&q=80" alt="Vanilla cone" loading="lazy" onerror="this.closest('figure').style.background='linear-gradient(135deg,#FBBF24,#A78BFA)'">
+          <figcaption>The classic</figcaption>
+        </figure>
+        <figure>
+          <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=600&q=80" alt="Loaded sundae" loading="lazy" onerror="this.closest('figure').style.background='linear-gradient(135deg,#BE123C,#A78BFA)'">
+          <figcaption>Loaded sundae</figcaption>
+        </figure>
+        <figure class="wide">
+          <img src="https://images.unsplash.com/photo-1488900128323-21503983a07e?w=800&q=80" alt="Cool treats" loading="lazy" onerror="this.closest('figure').style.background='linear-gradient(135deg,#3B0764,#FBBF24)'">
+          <figcaption>Cool treats</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="order">
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="logo"><span class="brand-badge brand-badge--ft"><img src="assets/purplewala-logo.png" alt="Purplewala logo"></span>Purple<b>wala</b></a>
+          <p>Hand-crafted happiness in a cone. Spreading sweetness one scoop at a time since 2019.</p>
+          <div class="socials">
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="Facebook">👍</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+            <a href="#" aria-label="TikTok">🎵</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#menu">Our Menu</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#why">About Us</a></li>
+            <li><a href="#">Gift Cards</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Order</h4>
+          <ul>
+            <li><a href="#">Delivery</a></li>
+            <li><a href="#">Catering</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © 2026 <b>Purplewala</b> — All rights reserved. Made with 💜 and a lot of sprinkles.
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast">Added to cart 🍨</div>
+
+  <script>
+    // ----- Particle hero (vanilla canvas) -----
+    (function () {
+      const canvas = document.getElementById('particles');
+      if (!canvas) return;
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const ctx = canvas.getContext('2d');
+      const hero = canvas.closest('.hero');
+      let w, h, dpr, particles = [], raf;
+      const palette = ['#FDF4FF', '#A78BFA', '#FBBF24', '#FB7185'];
+      const mouse = { x: -9999, y: -9999 };
+
+      function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        w = hero.clientWidth;
+        h = hero.clientHeight;
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        build();
+      }
+
+      function build() {
+        const count = Math.max(36, Math.min(90, Math.round(w * h / 16000)));
+        particles = [];
+        for (let i = 0; i < count; i++) {
+          particles.push({
+            x: Math.random() * w,
+            y: Math.random() * h,
+            r: Math.random() * 2.4 + 0.8,
+            vx: (Math.random() - 0.5) * 0.35,
+            vy: (Math.random() - 0.5) * 0.35,
+            c: palette[(Math.random() * palette.length) | 0],
+            a: Math.random() * 0.5 + 0.3
+          });
+        }
+      }
+
+      function step() {
+        ctx.clearRect(0, 0, w, h);
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < 0 || p.x > w) p.vx *= -1;
+          if (p.y < 0 || p.y > h) p.vy *= -1;
+
+          // subtle mouse repulsion
+          const dx = p.x - mouse.x, dy = p.y - mouse.y;
+          const d2 = dx * dx + dy * dy;
+          if (d2 < 14000) {
+            const f = (14000 - d2) / 14000 * 0.04;
+            p.x += dx * f; p.y += dy * f;
+          }
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = p.c;
+          ctx.globalAlpha = p.a;
+          ctx.fill();
+        }
+        // connecting lines
+        ctx.globalAlpha = 1;
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const a = particles[i], b = particles[j];
+            const dx = a.x - b.x, dy = a.y - b.y;
+            const dist = dx * dx + dy * dy;
+            if (dist < 11000) {
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.strokeStyle = 'rgba(167,139,250,' + (0.16 * (1 - dist / 11000)).toFixed(3) + ')';
+              ctx.lineWidth = 1;
+              ctx.stroke();
+            }
+          }
+        }
+        raf = requestAnimationFrame(step);
+      }
+
+      hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+      });
+      hero.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
+
+      window.addEventListener('resize', resize);
+      resize();
+      if (!reduce) step();
+      else step(), cancelAnimationFrame(raf);
+    })();
+
+    // ----- Scroll reveal (robust: load + scroll + resize) -----
+    (function () {
+      const sections = [...document.querySelectorAll('section.block')];
+      function reveal() {
+        const trigger = window.innerHeight * 0.88;
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const s = sections[i];
+          if (s.getBoundingClientRect().top < trigger) {
+            s.classList.add('visible');
+            sections.splice(i, 1);
+          }
+        }
+        if (!sections.length) {
+          window.removeEventListener('scroll', onScroll);
+          window.removeEventListener('resize', onScroll);
+        }
+      }
+      let ticking = false;
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => { reveal(); ticking = false; });
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      reveal();
+      // safety net: if anything is still hidden after load, reveal it
+      window.addEventListener('load', () => setTimeout(reveal, 200));
+    })();
+
+    // ----- Add to cart feedback + toast -----
+    const toast = document.getElementById('toast');
+    let toastTimer;
+    document.querySelectorAll('.add-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const original = btn.textContent;
+        btn.textContent = 'Added ✓';
+        btn.classList.add('added');
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.classList.remove('added');
+        }, 1600);
+      });
+    });
+
+    // ----- Mobile nav toggle -----
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach((a) =>
+      a.addEventListener('click', () => navLinks.classList.remove('open'))
+    );
+  </script>
+
+  <template id="__bundler_thumbnail">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+      <rect width="100" height="100" fill="#3B0764"/>
+      <circle cx="50" cy="44" r="20" fill="#FDF4FF"/>
+      <text x="50" y="52" font-family="Georgia, serif" font-size="20" font-weight="bold" fill="#BE123C" text-anchor="middle">P</text>
+      <text x="50" y="82" font-family="Georgia, serif" font-size="11" fill="#A78BFA" text-anchor="middle">Purplewala</text>
+    </svg>
+  </template>
+</body>
+</html>
